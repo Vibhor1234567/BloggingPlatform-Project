@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+</head>
+<body>
+    <h1>Blog Posts</h1>
+    {% for post in posts %}
+        <div>
+            <h2>{{ post[0] }}</h2> <!-- Post title -->
+            <p>{{ post[1] }}</p> <!-- Post description -->
+            <p>Author: {{ post[3] }}</p> <!-- Author username -->
+            <p>Publication Date: {{ post[2] }}</p> <!-- Publication date -->
+        </div>
+        <hr>
+    {% endfor %}
+
+    <!-- Pagination links -->
+    <div>
+        {% if page > 1 %}
+            <a href="{{ url_for('homepage', page=page-1) }}">Previous</a>
+        {% endif %}
+        {% if posts %}
+            <span>Page {{ page }}</span>
+        {% endif %}
+        {% if more %}
+            <a href="{{ url_for('homepage', page=page+1) }}">Next</a>
+        {% endif %}
+    </div>
+</body>
+</html>
